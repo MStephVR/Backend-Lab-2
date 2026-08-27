@@ -170,13 +170,13 @@ Este proyecto queda separado del repositorio principal y listo para seguir con l
 ❌ Gestión de ventas de ganado (solo crianza y sanitario).  
 ❌ Reportes impresos PDF avanzados (solo JSON/HTML básico).  
 ❌ Sincronización con laboratorios veterinarios externos.  
-❌ Machine learning real o predicción con modelos entrenados.  
+❌ Predicción avanzada con modelos externos.
 ❌ Geolocalización GPS de animales.  
 ❌ Notificaciones por SMS/email automáticas.  
 ❌ Sistema de usuarios y autenticación OAuth/LDAP (solo login local).  
 ❌ Integración con APIs de proveedores reales (fuente de precios simulada).  
 
-**Nota:** El "asistente inteligente" en este contexto es lógica heurística basada en reglas (eficacia ≥ 95%, plazo ≤ 3 días, precios históricos), NO machine learning.
+**Nota:** El "asistente inteligente" en este contexto es lógica heurística basada en reglas (eficacia ≥ 95%, plazo ≤ 3 días y precios históricos).
 
 ---
 

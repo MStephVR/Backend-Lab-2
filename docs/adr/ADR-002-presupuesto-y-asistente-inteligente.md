@@ -5,10 +5,10 @@
 ## Contexto
 El sistema debe permitir que el ganadero calcule el costo de una campaña sanitaria ANTES de ejecutarla, y además, necesita sugerencias de optimización: qué marcas alternativas podrían usar para ahorrar dinero sin comprometer la calidad sanitaria. Este es un requisito clave para el negocio: las ganancias en ganadería son estrechas, y cada ahorro en medicamentos impacta directamente la rentabilidad.
 
-Sin embargo, el equipo es pequeño (1 persona) y el tiempo es limitado (un ciclo académico). Implementar un motor de recomendación sofisticado (machine learning, APIs externas en tiempo real) sería inviable en este plazo. Se necesitaba algo pragmático pero útil.
+Sin embargo, el equipo es pequeño (1 persona) y el tiempo es limitado (un ciclo académico). Implementar un motor de recomendación sofisticado o depender de APIs externas en tiempo real sería inviable en este plazo. Se necesitaba algo pragmático pero útil.
 
 ## Decisión
-Implementaremos un **asistente inteligente basado en reglas heurísticas**, no en machine learning. El asistente:
+Implementaremos un **asistente inteligente basado en reglas heurísticas**. El asistente:
 1. Genera un presupuesto estimado ANTES de ejecutar la campaña (nuevas entidades: `PresupuestoJornada` y `AlternativaDeProducto`).
 2. Compara el producto actual con alternativas catalogadas localmente (no APIs externas).
 3. Aplica filtros de negocio: solo recomienda si eficacia ≥ 95%, plazo de entrega ≤ 3 días, ahorro ≥ 5%.
@@ -18,10 +18,10 @@ La "inteligencia" es lógica determinista basada en criterios claros, no predicc
 
 ## Alternativas consideradas
 
-1. **Machine Learning en tiempo real (TensorFlow, scikit-learn):**
+1. **Motor predictivo con dependencias externas:**
    - Entrenar un modelo con histórico de precios y eficacia.
    - Generar predicciones de mejores productos.
-   - **Descartado:** requeriría datos históricos voluminosos que no existen, capacidad computacional adicional en el servidor, y expertise en ML que el equipo no tiene. No es viable en un ciclo.
+   - **Descartado:** requeriría datos históricos voluminosos que no existen, capacidad computacional adicional en el servidor y más complejidad de operación. No es viable en un ciclo.
 
 2. **Integración con APIs de proveedores reales (HTTP calls a sistemas externos):**
    - Consultar en tiempo real precios de Agropecuaria Vanegas, CAJA, etc.
@@ -39,7 +39,7 @@ La "inteligencia" es lógica determinista basada en criterios claros, no predicc
 ### Positivas
 - **Pragmatismo:** funciona en el plazo del curso con recursos limitados.
 - **Transparencia:** las reglas son explícitas y documentadas; el ganadero entiende por qué se sugiere un producto.
-- **Mantenibilidad:** sin APIs externas, sin modelos ML que reentrenar.
+- **Mantenibilidad:** sin APIs externas ni modelos predictivos que mantener.
 - **Testabilidad:** lógica determinista, fácil de probar con casos de uso.
 - **Ahorro real:** el ganadero ve sugerencias inmediatas (presupuesto antes de comprar).
 
@@ -49,7 +49,7 @@ La "inteligencia" es lógica determinista basada en criterios claros, no predicc
 - **No aprende:** no captura patrones históricos. Si hace 2 meses la alternativa X era barata y hoy es cara, el sistema no lo sabe.
 
 ### Neutras
-- El equipo trabajo con lógica de negocio pura: sin complejidad de ML, sin overhead de conectividad.
+- El equipo trabaja con lógica de negocio pura, sin dependencias externas ni overhead de conectividad.
 - Futura mejora evidente: si en Laboratorio 5+ hay presupuesto, se puede integrar una API REST de precios o un job batch que sincronice.
 
 ## Referencias
