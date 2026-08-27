@@ -40,6 +40,33 @@ historial aunque el registro operacional cambie o se elimine. Las notas y
 detalles variables sí permanecen como datos propios del documento, porque no
 requieren un esquema relacional rígido.
 
+### Respuestas a las preguntas de diseño
+
+1. **¿Cómo se lee este dato el 90% del tiempo?**
+
+   La bitácora se consulta principalmente como una lista de eventos recientes
+   para auditoría, seguimiento y diagnóstico. Cada evento se puede leer de
+   forma independiente; no es necesario cargar siempre el animal, lote o
+   producto completo. Por eso se mantiene como documento en MongoDB y se
+   guardan referencias lógicas, no copias de las entidades SQL.
+
+2. **¿Cuánto crece en el peor caso?**
+
+   Crece de forma acumulativa con cada operación relevante del sistema. En el
+   peor caso puede alcanzar muchos miles o millones de eventos, pero cada
+   documento es pequeño y tiene una estructura estable. MongoDB permite
+   almacenar este crecimiento sin alterar las tablas operacionales de
+   PostgreSQL. La colección puede indexarse posteriormente por `fechaHora`,
+   `entidad` y `usuario` para consultas históricas.
+
+3. **¿Quién más lo necesita?**
+
+   Lo necesitan administradores, veterinarios y personal de soporte o auditoría
+   para consultar quién realizó una acción, cuándo ocurrió y qué detalle tuvo.
+   Como esos consumidores consultan el historial sin modificar las entidades
+   principales, una colección documental separada reduce el acoplamiento y
+   evita sobrecargar las tablas transaccionales de PostgreSQL.
+
 ## Alternativas consideradas
 
 1. **Todo en PostgreSQL relacional (una sola base de datos):**
