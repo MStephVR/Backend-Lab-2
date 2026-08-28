@@ -1,16 +1,16 @@
 # ADR-001 · Elección del stack tecnológico
 
-**Estado:** Aceptada · **Fecha:** 30/07/2026 · **Responsables:** [nombres de la pareja]
+**Estado:** Aceptada · **Fecha:** 30/07/2026 · **Responsable: María Stephanie Vargas Ramírez**
 
 ## Contexto
-Necesitamos elegir el stack para construir una aplicación web empresarial
+Elegir el stack para construir una aplicación web empresarial
 durante el curso EIF509. El curso recomienda Java 21 + Spring Boot 3 + Gradle,
 y el equipo ya tiene experiencia básica en Java. El tiempo es limitado
 (un ciclo) y la aplicación debe crecer de forma incremental laboratorio a
 laboratorio.
 
 ## Decisión
-Usaremos Java 21 + Spring Boot 3 + Gradle (Groovy) como stack principal,
+Java 21 + Spring Boot 3 + Gradle (Groovy) como stack principal,
 siguiendo la recomendación del curso.
 
 ## Alternativas consideradas
@@ -23,11 +23,11 @@ siguiendo la recomendación del curso.
    Se descartó Maven por consistencia con el material.
 
 ## Consecuencias
-- **Positivas:** aprovechamos el ecosistema maduro de Spring (seguridad, datos,
+- **Positivas:** se aprovecha el ecosistema maduro de Spring (seguridad, datos,
   pruebas) y la alineación total con el material del curso.
 - **Negativas:** Spring Boot tiene una curva inicial más pronunciada que un
   framework minimalista; el primer arranque puede sentirse pesado.
-- **Neutras:** todo el equipo trabajará con el mismo JDK (21) para evitar
+- **Neutras:** se trabajará con el mismo JDK (21) para evitar
   diferencias entre máquinas.
 
 ## Referencias

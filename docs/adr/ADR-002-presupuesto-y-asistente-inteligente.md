@@ -8,7 +8,7 @@ El sistema debe permitir que el ganadero calcule el costo de una campaña sanita
 Sin embargo, el equipo es pequeño (1 persona) y el tiempo es limitado (un ciclo académico). Implementar un motor de recomendación sofisticado o depender de APIs externas en tiempo real sería inviable en este plazo. Se necesitaba algo pragmático pero útil.
 
 ## Decisión
-Implementaremos un **asistente inteligente basado en reglas heurísticas**. El asistente:
+El asistente:
 1. Genera un presupuesto estimado ANTES de ejecutar la campaña (nuevas entidades: `PresupuestoJornada` y `AlternativaDeProducto`).
 2. Compara el producto actual con alternativas catalogadas localmente (no APIs externas).
 3. Aplica filtros de negocio: solo recomienda si eficacia ≥ 95%, plazo de entrega ≤ 3 días, ahorro ≥ 5%.
@@ -19,20 +19,16 @@ La "inteligencia" es lógica determinista basada en criterios claros, no predicc
 ## Alternativas consideradas
 
 1. **Motor predictivo con dependencias externas:**
-   - Entrenar un modelo con histórico de precios y eficacia.
    - Generar predicciones de mejores productos.
-   - **Descartado:** requeriría datos históricos voluminosos que no existen, capacidad computacional adicional en el servidor y más complejidad de operación. No es viable en un ciclo.
 
 2. **Integración con APIs de proveedores reales (HTTP calls a sistemas externos):**
-   - Consultar en tiempo real precios de Agropecuaria Vanegas, CAJA, etc.
-   - Garantizar datos siempre actualizados.
-   - **Descartado:** proveedores no exponen APIs públicas para esto; requeriría negociaciones comerciales, manejo de errores de conectividad, costos adicionales. La fuente de datos sería frágil e impredecible en un entorno educativo.
+   -  Descartado: proveedores no exponen APIs públicas para esto; requeriría negociaciones comerciales, manejo de errores de conectividad, costos adicionales. La fuente de datos sería frágil e impredecible en un entorno educativo.
 
-3. **Asistente basado en reglas (opción elegida):**
+3. **Asistente basado en reglas:**
    - Almacenar alternativas en base de datos local (`AlternativaDeProducto`).
    - Aplicar reglas de negocio simples y claras.
    - Admin puede cargar/actualizar alternativas manualmente desde un CSV o admin panel.
-   - **Elegido por:** pragmatismo, mantenibilidad, reproducibilidad, sin dependencias externas.
+
 
 ## Consecuencias
 
@@ -49,11 +45,10 @@ La "inteligencia" es lógica determinista basada en criterios claros, no predicc
 - **No aprende:** no captura patrones históricos. Si hace 2 meses la alternativa X era barata y hoy es cara, el sistema no lo sabe.
 
 ### Neutras
-- El equipo trabaja con lógica de negocio pura, sin dependencias externas ni overhead de conectividad.
+- Se trabaja con lógica de negocio pura, sin dependencias externas ni overhead de conectividad.
 - Futura mejora evidente: si en Laboratorio 5+ hay presupuesto, se puede integrar una API REST de precios o un job batch que sincronice.
 
 ## Referencias
 - Requisito del negocio: "quiero saber el costo antes de actuar".
 - Restricción del curso: 1 ciclo, equipo de 1 persona.
-- Patrón: heuristic-based recommendation systems (OSINT, business rules engines).
 - Laboratorio 2: MongoDB para bitácoras (documentos flexibles de precios históricos).
