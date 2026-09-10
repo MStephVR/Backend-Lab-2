@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api")
@@ -27,8 +28,10 @@ public class ControlRestController {
     }
 
     @PostMapping("/lotes")
+    @SuppressWarnings("null")
     public ResponseEntity<LoteEntity> crearLote(@RequestBody LoteEntity lote) {
-        return ResponseEntity.ok(loteRepository.save(lote));
+        LoteEntity loteGuardado = Objects.requireNonNull(loteRepository.save(lote));
+        return ResponseEntity.ok(loteGuardado);
     }
 
     @GetMapping("/animales")
@@ -37,7 +40,9 @@ public class ControlRestController {
     }
 
     @PostMapping("/animales")
+    @SuppressWarnings("null")
     public ResponseEntity<AnimalEntity> crearAnimal(@RequestBody AnimalEntity animal) {
-        return ResponseEntity.ok(animalRepository.save(animal));
+        AnimalEntity animalGuardado = Objects.requireNonNull(animalRepository.save(animal));
+        return ResponseEntity.ok(animalGuardado);
     }
 }

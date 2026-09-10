@@ -66,6 +66,9 @@ La cantidad de unidades a consumir se calcula con redondeo hacia arriba para gar
 - PostgreSQL: lotes, animales, inventario, compras, jornadas, costos y relación transaccional.
 - MongoDB: bitácoras, historial, observaciones y documentos no estructurados.
 
+La descripción del modelo, sus decisiones de diseño y la justificación del
+subdominio documental están en [docs/modelo-datos.md](docs/modelo-datos.md).
+
 ## Entidades principales
 - Animal
 - Lote

@@ -1,6 +1,8 @@
 package cr.ac.una.eif509.demo.domain;
 
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "lotes")
@@ -15,6 +17,9 @@ public class LoteEntity {
 
     private String ubicacion;
     private String proposito;
+
+    @OneToMany(mappedBy = "lote", fetch = FetchType.LAZY)
+    private List<AnimalEntity> animales = new ArrayList<>();
 
     public LoteEntity() {
     }
@@ -55,5 +60,9 @@ public class LoteEntity {
 
     public void setProposito(String proposito) {
         this.proposito = proposito;
+    }
+
+    public List<AnimalEntity> getAnimales() {
+        return animales;
     }
 }
