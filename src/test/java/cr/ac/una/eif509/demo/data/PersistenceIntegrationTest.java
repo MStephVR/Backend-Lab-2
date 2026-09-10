@@ -6,6 +6,7 @@ import cr.ac.una.eif509.demo.domain.InventarioEntity;
 import cr.ac.una.eif509.demo.domain.LoteEntity;
 import cr.ac.una.eif509.demo.domain.ProductoVeterinarioEntity;
 import cr.ac.una.eif509.demo.domain.ProveedorEntity;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,8 @@ class PersistenceIntegrationTest {
     private ProveedorRepository proveedorRepository;
     @Autowired
     private CompraRepository compraRepository;
+        @MockBean
+        private BitacoraRepository bitacoraRepository;
 
     @BeforeEach
     void cleanDatabase() {
