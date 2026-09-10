@@ -42,4 +42,4 @@ jobs:                         # Un workflow tiene uno o más "jobs" (trabajos)
       #   "./gradlew build" compila, empaqueta y ejecuta los tests.
       #   Si algo falla, el workflow se marca en ROJO. Si todo pasa, en VERDE.
       - name: Compilar y probar
-          run: ./gradlew build --stacktrace
+        run: ./gradlew build --stacktrace
