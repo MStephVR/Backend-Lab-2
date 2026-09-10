@@ -21,11 +21,11 @@ jobs:                         # Un workflow tiene uno o más "jobs" (trabajos)
 
       # Paso 1: descargar tu código al servidor de GitHub
       - name: Descargar el código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Paso 2: instalar Java 21 (Temurin es una distribución gratuita)
       - name: Configurar Java 21
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '21'
